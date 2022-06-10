@@ -7,6 +7,6 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[](/) | 15.0.1.0.0 | .
+[product_name_with_attributes](product_name_with_attributes/) | 15.0.1.0.0 | Show the attribute in the product search in the dropdowns of the sales line, Invoices and Delivery notes..
 
 [//]: # (end addons)
