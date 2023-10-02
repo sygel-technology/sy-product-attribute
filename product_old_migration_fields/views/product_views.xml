@@ -8,7 +8,7 @@
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position='inside'>
-                <page string="Migration Info" name="migration_info">
+                <page string="Migration Info" name="migration_info" groups="base_old_migration_fields.group_old_migration_fields_manager">
                 </page>
             </xpath>
         </field>
@@ -22,7 +22,7 @@
             <xpath expr="//page[@name='migration_info']" position='inside'>
                 <group>
                     <group>
-                        <field name="old_product_template_id"/>
+                        <field name="old_product_template_id" groups="base_old_migration_fields.group_old_migration_fields_manager"/>
                     </group>
                 </group>
             </xpath>
@@ -37,7 +37,7 @@
             <xpath expr="//page[@name='migration_info']" position='inside'>
                 <group>
                     <group>
-                        <field name="old_product_id"/>
+                        <field name="old_product_id" groups="base_old_migration_fields.group_old_migration_fields_manager"/>
                     </group>
                 </group>
             </xpath>
