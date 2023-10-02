@@ -42,6 +42,13 @@ If you want to modify or enter the old id of a product:
 #. Go to 'Migration Info' tab.
 #. Enter/Edit the fields.
 
+If you want to modify or enter the old id of a category:
+
+#. Go to Inventory -> Configuration -> Product Categories.
+#. Select or create a new category.
+#. Go to 'Migration Info' tab.
+#. Enter/Edit the fields.
+
 
 
 Bug Tracker
