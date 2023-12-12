@@ -1,12 +1,13 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-  :target: http://www.gnu.org/licenses/agpl
-  :alt: License: AGPL-3
+	:target: http://www.gnu.org/licenses/agpl
+	:alt: License: AGPL-3
 
-============================
-Product name with attributes
-============================
+=========================
+Product Name With Country
+=========================
 
-Show the attribute in the product search in the dropdowns of the sales line, Invoices and Delivery notes.
+This module adds a field in the product.template with the country. 
+The country will be shown at the end of the product display_name.
 
 
 Installation
@@ -14,7 +15,7 @@ Installation
 
 To install this module, you need to:
 
-#. Just install the module
+#. Only install
 
 
 Configuration
@@ -22,7 +23,9 @@ Configuration
 
 To configure this module, you need to:
 
-1. In Sales settings check the variants option.
+#. Go to inventory module -> Products -> Products
+#. Create or edit a new product
+#. Add a country in the country field
 
 
 Usage
@@ -30,19 +33,11 @@ Usage
 
 To use this module, you need to:
 
- 1. Create new attribute 
- 2. Create a new product with an attribute
- 3. Create a new sale, invoice or delivery note
+#. Go to Sales, Inventory or Invoices Module.
+#. Create a new one.
+#. Add a new line with a product with country
 
-
-ROADMAP
-=======
-
-[ Enumerate known caveats and future potential improvements.
-  It is mostly intended for end-users, and can also help
-  potential new contributors discovering new features to implement. ]
-
-* ...
+You will see the country name on the end of the product name.
 
 
 Bug Tracker
@@ -62,21 +57,22 @@ Credits
 Authors
 ~~~~~~~
 
-* Sygel
-
+* Sygel, Odoo Community Association (OCA)
 
 Contributors
 ~~~~~~~~~~~~
 
 * Ángel García de la Chica Herrera <angel.garcia@sygel.es>
 
-
 Maintainer
 ~~~~~~~~~~
 
 This module is maintained by Sygel.
 
+.. image:: https://www.sygel.es/logo.png
+   :alt: Sygel
+   :target: https://www.sygel.es
 
-This module is part of the `Sygel/sy-product-attribute <https://github.com/sygel-technology/sy-product-attribute>'_.
+This module is part of the `Sygel/sy-product-attribute <https://github.com/sygel-technology/sy-product-attribute>`_.
 
 To contribute to this module, please visit https://github.com/sygel-technology.
