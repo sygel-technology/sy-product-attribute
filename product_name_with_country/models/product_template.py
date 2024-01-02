@@ -32,7 +32,11 @@ class ProductProduct(models.Model):
     def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
         product_ids = super()._name_search(name, args, operator, limit, name_get_uid)
         if name:
-            limit_search = limit if not product_ids else limit - len(product_ids)
+            limit_search = limit
+            if not limit and product_ids:
+                limit_search = len(product_ids)
+            elif limit and product_ids:
+                limit_search -= len(product_ids)
             if limit_search > 0:
                 product_ids += self._search([
                     ('product_tmpl_id.country_id', 'ilike', name),
