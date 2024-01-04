@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2024 Manuel Regidor <manuel.regidor@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="product_lst_price_calculate_product_template_form_view" model="ir.ui.view">
+        <field name="name">product.lst.price.calculate.product.template.form.view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='group_general']/.." name="group_general" position="after">
+                <group name="price_calculation" string="Price Calculation">
+                    <group>
+                        <label for="lst_price_calculation" class="oe_inline"/>
+                        <div>
+                            <field name="lst_price_calculation" class="oe_inline" widget="monetary"/>
+                            <button name="action_transfer_lst_price_calculation" string="Transfer" icon="fa-arrow-right" class="btn-link" type="object" />
+                        </div>
+                        <field name="cost_calculation" widget="monetary"/>
+                        <field name="vendor_price_calculation" widget="monetary"/>
+                        <label for="vendor_discount_calculation" class="oe_inline"/>
+                        <div>
+                            <field name="vendor_discount_calculation" class="oe_inline"/>%
+                        </div>
+                        <field name="theorical_margin_calculation" force_save="1" widget="monetary"/>
+                        <label for="standard_margin_rate_calculation" class="oe_inline"/>
+                        <div>
+                            <field name="standard_margin_rate_calculation" class="oe_inline"/>%
+                            <span attrs="{'invisible': [('min_margin_rate', '=', 0.0)]}" class="text-muted"> Min. Margin Rate: <field name="min_margin_rate" />%</span>
+                        </div>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

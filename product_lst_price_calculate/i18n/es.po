@@ -1,0 +1,149 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_lst_price_calculate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-04 10:42+0000\n"
+"PO-Revision-Date: 2024-01-04 11:48+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: product_lst_price_calculate
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_res_company__apply_product_min_margin
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_res_config_settings__apply_product_min_margin
+msgid "Apply Product Min. Margin"
+msgstr "Aplicar Margen Mínimo en producto"
+
+#. module: product_lst_price_calculate
+#: model:ir.model,name:product_lst_price_calculate.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: product_lst_price_calculate
+#: model:ir.model,name:product_lst_price_calculate.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de configuración"
+
+#. module: product_lst_price_calculate
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_product__cost_calculation
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_template__cost_calculation
+msgid "Cost Calculation"
+msgstr "Coste cálculo"
+
+#. module: product_lst_price_calculate
+#: model:ir.model.fields,help:product_lst_price_calculate.field_product_product__cost_calculation
+#: model:ir.model.fields,help:product_lst_price_calculate.field_product_template__cost_calculation
+msgid ""
+"Cost Calculation is [ Vendor Price Calculation * (1 - Vendor Discount "
+"Calculation / 100) ]."
+msgstr ""
+"Coste Cálculo es [ Precio proveedor cálculo * (1 - Descuento proveedor "
+"cálculo / 100) ]"
+
+#. module: product_lst_price_calculate
+#: model_terms:ir.ui.view,arch_db:product_lst_price_calculate.product_lst_price_calculate_res_config_settings_view_form
+msgid "If set, products must have this minimum margin (in %)."
+msgstr ""
+"SI está activado, los productos deben tener este margen mínimo (en %)"
+
+#. module: product_lst_price_calculate
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_product__min_margin_rate
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_template__min_margin_rate
+msgid "Min. Margin Rate"
+msgstr "Tasa mínima de margen"
+
+#. module: product_lst_price_calculate
+#: model_terms:ir.ui.view,arch_db:product_lst_price_calculate.product_lst_price_calculate_product_template_form_view
+msgid "Min. Margin Rate:"
+msgstr "Tasa mínima de margen:"
+
+#. module: product_lst_price_calculate
+#: model_terms:ir.ui.view,arch_db:product_lst_price_calculate.product_lst_price_calculate_product_template_form_view
+msgid "Price Calculation"
+msgstr "Precio cálculo"
+
+#. module: product_lst_price_calculate
+#: model:ir.model,name:product_lst_price_calculate.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: product_lst_price_calculate
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_res_company__product_min_margin
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_res_config_settings__product_min_margin
+msgid "Product Min. Margin (%)"
+msgstr "Margen mínimo en producto (%)"
+
+#. module: product_lst_price_calculate
+#: model:ir.model,name:product_lst_price_calculate.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: product_lst_price_calculate
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_product__lst_price_calculation
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_template__lst_price_calculation
+msgid "Sale Price Calculation"
+msgstr "Precio de venta cálculo"
+
+#. module: product_lst_price_calculate
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_product__theorical_margin_calculation
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_template__theorical_margin_calculation
+msgid "Theorical Margin Calculation"
+msgstr "Margen teórico cálculo"
+
+#. module: product_lst_price_calculate
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_product__standard_margin_rate_calculation
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_template__standard_margin_rate_calculation
+msgid "Theorical Margin Calculation (%)"
+msgstr "Margen teórico cálculo (%)"
+
+#. module: product_lst_price_calculate
+#: model:ir.model.fields,help:product_lst_price_calculate.field_product_product__standard_margin_rate_calculation
+#: model:ir.model.fields,help:product_lst_price_calculate.field_product_template__standard_margin_rate_calculation
+msgid ""
+"Theorical Margin Calculation (%) [ (Sale Price Calculation - Cost "
+"Calculation) / Sale Price Calculation * 100]. If no Sale Price Calculation "
+"and Cost Calculation set, will display 999.0"
+msgstr ""
+"Margen teórico cálculo (%) es [ (Precio de venta cálculo - Coste "
+"cálculo) / Precio de venta cálculo * 100 ]. Si no se ha establecido Precio "
+"de venta cálculo ni Coste cálculo, se mostrará 999.0"
+
+#. module: product_lst_price_calculate
+#: code:addons/product_lst_price_calculate/models/product_product.py:0
+#: code:addons/product_lst_price_calculate/models/product_template.py:0
+#, python-format
+msgid "Theorical Margin Calculation (%) must be equal or greater than {}%."
+msgstr "Margen teórico cálculo (%) debe ser igual o mayor a {}%."
+
+#. module: product_lst_price_calculate
+#: model:ir.model.fields,help:product_lst_price_calculate.field_product_product__theorical_margin_calculation
+#: model:ir.model.fields,help:product_lst_price_calculate.field_product_template__theorical_margin_calculation
+msgid ""
+"Theorical Margin Calculation [ Sale Price Calculation - Cost Calculation ]."
+msgstr "Margen teórico cálculo es [ Precio de venta cálculo - Coste cálculo]"
+
+#. module: product_lst_price_calculate
+#: model_terms:ir.ui.view,arch_db:product_lst_price_calculate.product_lst_price_calculate_product_template_form_view
+msgid "Transfer"
+msgstr "Transferir"
+
+#. module: product_lst_price_calculate
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_product__vendor_discount_calculation
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_template__vendor_discount_calculation
+msgid "Vendor Discount Calculation"
+msgstr "Descuento de proveedor cálculo"
+
+#. module: product_lst_price_calculate
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_product__vendor_price_calculation
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_template__vendor_price_calculation
+msgid "Vendor Price Calculation"
+msgstr "Precio de proveedor cálculo"
