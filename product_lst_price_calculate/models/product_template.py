@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
 
 
 class ProductTemplate(models.Model):
@@ -50,22 +49,9 @@ class ProductTemplate(models.Model):
     min_margin_rate = fields.Float(
         string="Min. Margin Rate",
         compute="_compute_min_margin_rate"
-    )
+    )    
 
-    @api.constrains("standard_margin_rate_calculation")
-    def _check_standard_margin_rate_calculation(self):
-        for sel in self:
-            company = sel.company_id or self.env.company
-            if company.apply_product_min_margin and sel.standard_margin_rate_calculation < company.product_min_margin:
-                raise ValidationError(
-                    _(
-                        "Theorical Margin Calculation (%) must be equal or "
-                        "greater than {}%.".format(
-                            company.product_min_margin
-                        )
-                    )
-                )   
-
+    @api.depends("company_id")
     def _compute_min_margin_rate(self):
         for sel in self:
             min_margin_rate = 0.0
@@ -84,7 +70,8 @@ class ProductTemplate(models.Model):
         for product in self:
             product.theorical_margin_calculation = product.lst_price_calculation - product.cost_calculation
             if product.lst_price_calculation == 0:
-                product.standard_margin_rate_calculation = 999.0
+                company = product.company_id or self.env.company
+                product.standard_margin_rate_calculation = company.product_margin_calculation_default or 999.0
             else:
                 product.standard_margin_rate_calculation = (
                     (product.lst_price_calculation - product.cost_calculation)
@@ -102,6 +89,23 @@ class ProductTemplate(models.Model):
 
     @api.onchange("standard_margin_rate_calculation")
     def _onchange_standard_margin_rate_calculation(self):
+        if self.standard_margin_rate_calculation != 100:
+            self.lst_price_calculation = self.cost_calculation / (
+                1 - self.standard_margin_rate_calculation / 100
+            )
+        company = self.company_id or self.env.company
+        if company.apply_product_min_margin and self.standard_margin_rate_calculation < company.product_min_margin:
+            return {
+                'warning': {
+                    'title': _("Margin Calculation Warning"),
+                    'message': _("The minimum product margin set in company is {}%.".format(
+                        company.product_min_margin
+                    )),
+                }
+            }
+
+    @api.onchange("vendor_price_calculation")
+    def _onchange_vendor_price_calculation(self):
         if self.standard_margin_rate_calculation != 100:
             self.lst_price_calculation = self.cost_calculation / (
                 1 - self.standard_margin_rate_calculation / 100

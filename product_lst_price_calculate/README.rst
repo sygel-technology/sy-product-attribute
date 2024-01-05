@@ -23,6 +23,7 @@ Configuration
 To configure this module, you need to:
 
 #. Go to Sales > Configuration > Settings > Pricing and activate the "Apply Product Min. Margin" option when the product profit margin needs to be equal or greater than a given value.
+#. Go to Sales > Configuration > Settings > Pricing and set a value in the "Product Margin Calculation Default (%)" field to use this rate as the default calculation rate.
 
 
 Usage
