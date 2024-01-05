@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-04 10:42+0000\n"
-"PO-Revision-Date: 2024-01-04 11:48+0100\n"
+"POT-Creation-Date: 2024-01-05 10:38+0000\n"
+"PO-Revision-Date: 2024-01-05 11:41+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,13 @@ msgstr ""
 "Plural-Forms: \n"
 "Language: es\n"
 "X-Generator: Poedit 2.3\n"
+
+#. module: product_lst_price_calculate
+#: model_terms:ir.ui.view,arch_db:product_lst_price_calculate.product_lst_price_calculate_res_config_settings_view_form
+msgid "<span class=\"o_form_label\">Product Margin Calculation Default (%)</span>"
+msgstr ""
+"<span class=\"o_form_label\">Margen de cálculo de producto por defecto (%)</"
+"span>"
 
 #. module: product_lst_price_calculate
 #: model:ir.model.fields,field_description:product_lst_price_calculate.field_res_company__apply_product_min_margin
@@ -52,8 +59,14 @@ msgstr ""
 #. module: product_lst_price_calculate
 #: model_terms:ir.ui.view,arch_db:product_lst_price_calculate.product_lst_price_calculate_res_config_settings_view_form
 msgid "If set, products must have this minimum margin (in %)."
-msgstr ""
-"SI está activado, los productos deben tener este margen mínimo (en %)"
+msgstr "SI está activado, los productos deben tener este margen mínimo (en %)"
+
+#. module: product_lst_price_calculate
+#: code:addons/product_lst_price_calculate/models/product_product.py:0
+#: code:addons/product_lst_price_calculate/models/product_template.py:0
+#, python-format
+msgid "Margin Calculation Warning"
+msgstr "Aviso de cálculo de margen"
 
 #. module: product_lst_price_calculate
 #: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_product__min_margin_rate
@@ -77,6 +90,12 @@ msgid "Product"
 msgstr "Producto"
 
 #. module: product_lst_price_calculate
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_res_company__product_margin_calculation_default
+#: model:ir.model.fields,field_description:product_lst_price_calculate.field_res_config_settings__product_margin_calculation_default
+msgid "Product Margin Calculation Default (%)"
+msgstr "Margen de cálculo de producto por defecto (%)"
+
+#. module: product_lst_price_calculate
 #: model:ir.model.fields,field_description:product_lst_price_calculate.field_res_company__product_min_margin
 #: model:ir.model.fields,field_description:product_lst_price_calculate.field_res_config_settings__product_min_margin
 msgid "Product Min. Margin (%)"
@@ -92,6 +111,27 @@ msgstr "Plantilla de producto"
 #: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_template__lst_price_calculation
 msgid "Sale Price Calculation"
 msgstr "Precio de venta cálculo"
+
+#. module: product_lst_price_calculate
+#: model_terms:ir.ui.view,arch_db:product_lst_price_calculate.product_lst_price_calculate_res_config_settings_view_form
+msgid ""
+"Set this value as the \"Theorical Margin Calculation (%)\" when a new product "
+"is created or it is not possible to calculate the value."
+msgstr ""
+"Se establece este valor como \"Margen teórico cálculo (%)\" cuando se crea un "
+"producto o no es posible calcular un valor."
+
+#. module: product_lst_price_calculate
+#: code:addons/product_lst_price_calculate/models/product_product.py:0
+#, python-format
+msgid "The minimum product margin set in company is {}%"
+msgstr "El margen mínimo de producto establecido en la compañía es {}%"
+
+#. module: product_lst_price_calculate
+#: code:addons/product_lst_price_calculate/models/product_template.py:0
+#, python-format
+msgid "The minimum product margin set in company is {}%."
+msgstr "El margen mínimo de producto establecido en la compañía es {}%."
 
 #. module: product_lst_price_calculate
 #: model:ir.model.fields,field_description:product_lst_price_calculate.field_product_product__theorical_margin_calculation
@@ -110,19 +150,12 @@ msgstr "Margen teórico cálculo (%)"
 #: model:ir.model.fields,help:product_lst_price_calculate.field_product_template__standard_margin_rate_calculation
 msgid ""
 "Theorical Margin Calculation (%) [ (Sale Price Calculation - Cost "
-"Calculation) / Sale Price Calculation * 100]. If no Sale Price Calculation "
-"and Cost Calculation set, will display 999.0"
+"Calculation) / Sale Price Calculation * 100]. If no Sale Price Calculation and "
+"Cost Calculation set, will display 999.0"
 msgstr ""
-"Margen teórico cálculo (%) es [ (Precio de venta cálculo - Coste "
-"cálculo) / Precio de venta cálculo * 100 ]. Si no se ha establecido Precio "
-"de venta cálculo ni Coste cálculo, se mostrará 999.0"
-
-#. module: product_lst_price_calculate
-#: code:addons/product_lst_price_calculate/models/product_product.py:0
-#: code:addons/product_lst_price_calculate/models/product_template.py:0
-#, python-format
-msgid "Theorical Margin Calculation (%) must be equal or greater than {}%."
-msgstr "Margen teórico cálculo (%) debe ser igual o mayor a {}%."
+"Margen teórico cálculo (%) es [ (Precio de venta cálculo - Coste cálculo) / "
+"Precio de venta cálculo * 100 ]. Si no se ha establecido Precio de venta "
+"cálculo ni Coste cálculo, se mostrará 999.0"
 
 #. module: product_lst_price_calculate
 #: model:ir.model.fields,help:product_lst_price_calculate.field_product_product__theorical_margin_calculation

@@ -18,3 +18,9 @@ class ResConfigSettings(models.TransientModel):
         digits="Product Price",
         readonly=False
     )
+    product_margin_calculation_default = fields.Float(
+        string="Product Margin Calculation Default (%)",
+        related="company_id.product_margin_calculation_default",
+        digits="Product Price",
+        readonly=False
+    )

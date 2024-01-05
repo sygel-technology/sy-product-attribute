@@ -9,6 +9,16 @@
         <field name="arch" type="xml">
             <xpath expr='//field[@name="module_sale_margin"]/../..' position="after">
                 <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane"/>
+                    <div class="o_setting_right_pane">
+                        <span class="o_form_label">Product Margin Calculation Default (%)</span>
+                        <div class="text-muted">
+                            Set this value as the "Theorical Margin Calculation (%)" when a new product is created or it is not possible to calculate the value.
+                        </div>
+                        <div class="text-muted">
+                            <field name="product_margin_calculation_default"/>
+                        </div>
+                    </div>
                     <div class="o_setting_left_pane">
                         <field name="apply_product_min_margin"/>
                     </div>

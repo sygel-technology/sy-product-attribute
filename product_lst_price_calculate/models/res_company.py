@@ -14,3 +14,7 @@ class ResCompany(models.Model):
         string="Product Min. Margin (%)",
         digits="Product Price",
     )
+    product_margin_calculation_default = fields.Float(
+        string="Product Margin Calculation Default (%)",
+        digits="Product Price",
+    )
