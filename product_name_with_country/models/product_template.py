@@ -37,7 +37,7 @@ class ProductProduct(models.Model):
                 limit_search = len(product_ids)
             elif limit and product_ids:
                 limit_search -= len(product_ids)
-            if limit_search > 0:
+            if not limit_search or limit_search > 0:
                 product_ids += self._search([
                     ('product_tmpl_id.country_id', 'ilike', name),
                     ('id', 'not in', product_ids)
