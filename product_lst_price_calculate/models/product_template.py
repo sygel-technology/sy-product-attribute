@@ -1,7 +1,7 @@
 # Copyright 2024 Manuel Regidor <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 
 
 class ProductTemplate(models.Model):
@@ -17,15 +17,13 @@ class ProductTemplate(models.Model):
         compute="_compute_cost_calculation",
         help="Cost Calculation is [ Vendor Price Calculation * (1 - Vendor "
         "Discount Calculation / 100) ].",
-        store=True
+        store=True,
     )
     vendor_price_calculation = fields.Float(
-        string="Vendor Price Calculation",
-        digits="Product Price"
+        string="Vendor Price Calculation", digits="Product Price"
     )
     vendor_discount_calculation = fields.Float(
-        string="Vendor Discount Calculation",
-        digits="Product Price"
+        string="Vendor Discount Calculation", digits="Product Price"
     )
     theorical_margin_calculation = fields.Float(
         compute="_compute_margin_calculation",
@@ -33,7 +31,7 @@ class ProductTemplate(models.Model):
         digits="Product Price",
         store=True,
         help="Theorical Margin Calculation "
-        "[ Sale Price Calculation - Cost Calculation ]."
+        "[ Sale Price Calculation - Cost Calculation ].",
     )
     standard_margin_rate_calculation = fields.Float(
         compute="_compute_margin_calculation",
@@ -47,9 +45,8 @@ class ProductTemplate(models.Model):
         "Calculation set, will display 999.0",
     )
     min_margin_rate = fields.Float(
-        string="Min. Margin Rate",
-        compute="_compute_min_margin_rate"
-    )    
+        string="Min. Margin Rate", compute="_compute_min_margin_rate"
+    )
 
     @api.depends("company_id")
     def _compute_min_margin_rate(self):
@@ -64,14 +61,18 @@ class ProductTemplate(models.Model):
         "lst_price_calculation",
         "cost_calculation",
         "vendor_price_calculation",
-        "vendor_discount_calculation"
+        "vendor_discount_calculation",
     )
     def _compute_margin_calculation(self):
         for product in self:
-            product.theorical_margin_calculation = product.lst_price_calculation - product.cost_calculation
+            product.theorical_margin_calculation = (
+                product.lst_price_calculation - product.cost_calculation
+            )
             if product.lst_price_calculation == 0:
                 company = product.company_id or self.env.company
-                product.standard_margin_rate_calculation = company.product_margin_calculation_default or 999.0
+                product.standard_margin_rate_calculation = (
+                    company.product_margin_calculation_default or 999.0
+                )
             else:
                 product.standard_margin_rate_calculation = (
                     (product.lst_price_calculation - product.cost_calculation)
@@ -79,13 +80,12 @@ class ProductTemplate(models.Model):
                     * 100
                 )
 
-    @api.depends(
-        "vendor_price_calculation",
-        "vendor_discount_calculation"
-    )
+    @api.depends("vendor_price_calculation", "vendor_discount_calculation")
     def _compute_cost_calculation(self):
         for product in self:
-            product.cost_calculation = product.vendor_price_calculation * (1 - product.vendor_discount_calculation / 100)
+            product.cost_calculation = product.vendor_price_calculation * (
+                1 - product.vendor_discount_calculation / 100
+            )
 
     @api.onchange("standard_margin_rate_calculation")
     def _onchange_standard_margin_rate_calculation(self):
@@ -94,13 +94,18 @@ class ProductTemplate(models.Model):
                 1 - self.standard_margin_rate_calculation / 100
             )
         company = self.company_id or self.env.company
-        if company.apply_product_min_margin and self.standard_margin_rate_calculation < company.product_min_margin:
+        if (
+            company.apply_product_min_margin
+            and self.standard_margin_rate_calculation < company.product_min_margin
+        ):
             return {
-                'warning': {
-                    'title': _("Margin Calculation Warning"),
-                    'message': _("The minimum product margin set in company is {}%.".format(
-                        company.product_min_margin
-                    )),
+                "warning": {
+                    "title": _("Margin Calculation Warning"),
+                    "message": _(
+                        "The minimum product margin set in company is {}%.".format(
+                            company.product_min_margin
+                        )
+                    ),
                 }
             }
 
@@ -113,6 +118,4 @@ class ProductTemplate(models.Model):
 
     def action_transfer_lst_price_calculation(self):
         for product in self:
-            product.write({
-                "list_price": product.lst_price_calculation
-            })
+            product.write({"list_price": product.lst_price_calculation})
