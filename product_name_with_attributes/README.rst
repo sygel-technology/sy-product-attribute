@@ -77,7 +77,7 @@ Maintainer
 This module is maintained by Sygel.
 
 
-This module is part of the `Sygel/sy-product-attribute <https://github.com/sygel-technology/sy-product-attribute>'_.
+This module is part of the `Sygel/sy-product-attribute <https://github.com/sygel-technology/sy-product-attribute>`_.
 
 To contribute to this module, please visit https://github.com/sygel-technology.
 

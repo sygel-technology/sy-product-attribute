@@ -1,4 +1,4 @@
-# Do NOT update manually, changes here will be overwritten by Copier
+# Do NOT update manually; changes here will be overwritten by Copier
 _commit: v1.27
 _src_path: https://github.com/OCA/oca-addons-repo-template.git
 ci: GitHub
