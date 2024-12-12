@@ -1,6 +1,6 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-	:target: http://www.gnu.org/licenses/agpl
-	:alt: License: AGPL-3
+    :target: http://www.gnu.org/licenses/agpl
+    :alt: License: AGPL-3
 
 ===========================
 Product Lst Price Calculate
@@ -34,10 +34,10 @@ To use this module, you need to:
 #. Go to a product template or variant form view.
 
 #. Modify the followin values in order to calculate the price at which the product should be sold:
-	#. Sale Price Calculation
-	#. Vendor Price Calculation
-	#. Vendor Discount Calculation
-	#. Theorical Margin Calculation (%)
+    #. Sale Price Calculation
+    #. Vendor Price Calculation
+    #. Vendor Discount Calculation
+    #. Theorical Margin Calculation (%)
 
 #. Click on the 'Transfer' button next to the 'Sale Price Calculation' value to set this value as the product sales price.
 
@@ -69,11 +69,6 @@ Contributors
 
 * Manuel Regidor <manuel.regidor@sygel.es>
 
-
-Maintainer
-~~~~~~~~~~
-
-This module is maintained by Sygel.
 
 Maintainer
 ~~~~~~~~~~
