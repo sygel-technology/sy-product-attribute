@@ -24,6 +24,7 @@ addon | version | maintainers | summary
 [product_name_with_attributes](product_name_with_attributes/) | 16.0.1.0.0 |  | Product name with attributes
 [product_old_migration_fields](product_old_migration_fields/) | 16.0.1.0.1 |  | Product Old Migration Fields
 [product_search_category_attribute](product_search_category_attribute/) | 16.0.1.0.0 |  | Base module for category/attribute products searching
+[product_vendor_code_search](product_vendor_code_search/) | 16.0.1.0.0 |  | Search products by vendor code
 
 [//]: # (end addons)
 
