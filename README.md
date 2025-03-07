@@ -21,6 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[lot_ref_search](lot_ref_search/) | 17.0.1.0.0 |  | Search by internal reference in relational fields to lot
 [product_old_migration_fields](product_old_migration_fields/) | 17.0.1.0.1 |  | Product Old Migration Fields
 
 [//]: # (end addons)
