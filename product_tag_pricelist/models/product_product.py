@@ -4,10 +4,10 @@
 from odoo import _, api, models
 
 
-class ProductTemplate(models.Model):
-    _inherit = "product.template"
+class ProductProduct(models.Model):
+    _inherit = "product.product"
 
-    @api.onchange("product_tag_ids")
+    @api.onchange("product_tag_ids", "additional_product_tag_ids")
     def _onchange_tag_ids(self):
         if self.product_tag_ids:
             return {
