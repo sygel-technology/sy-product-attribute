@@ -7,10 +7,14 @@ from odoo import models
 class Pricelist(models.Model):
     _inherit = "product.pricelist"
 
-    def _compute_price_rule_get_items(self, products_qty_partner, date, uom_id, prod_tmpl_ids, prod_ids, categ_ids):
+    def _compute_price_rule_get_items(
+        self, products_qty_partner, date, uom_id, prod_tmpl_ids, prod_ids, categ_ids
+    ):
         self.ensure_one()
-        self.env['product.pricelist.item'].flush(['price', 'currency_id', 'company_id', 'active'])
-        products = self.env['product.product'].browse(prod_ids)
+        self.env["product.pricelist.item"].flush(
+            ["price", "currency_id", "company_id", "active"]
+        )
+        products = self.env["product.product"].browse(prod_ids)
         brand_ids = {}
         for p in products:
             brand = p.product_brand_id
@@ -29,11 +33,11 @@ class Pricelist(models.Model):
                 (item.product_tmpl_id IS NULL OR item.product_tmpl_id = any(%s))
                 AND (item.product_id IS NULL OR item.product_id = any(%s))
                 AND (item.categ_id IS NULL OR item.categ_id = any(%s))
-                AND (item.applied_on != '2a_product_tags' OR item.id IN 
+                AND (item.applied_on != '2a_product_tags' OR item.id IN
                     (
                         SELECT product_pricelist_item_id
                         FROM product_pricelist_item_product_template_tag_rel AS rel
-                        WHERE rel.product_template_tag_id IN 
+                        WHERE rel.product_template_tag_id IN
                         (
                             SELECT tag.tag_id
                             FROM product_template_product_tag_rel as tag
@@ -49,6 +53,16 @@ class Pricelist(models.Model):
             ORDER BY
                 item.applied_on, item.min_quantity desc, categ.complete_name desc, item.id desc
             """,
-            (prod_tmpl_ids, prod_ids, categ_ids, tuple(prod_tmpl_ids), brand_ids, self.id, date, date))
+            (
+                prod_tmpl_ids,
+                prod_ids,
+                categ_ids,
+                tuple(prod_tmpl_ids),
+                brand_ids,
+                self.id,
+                date,
+                date,
+            ),
+        )
         item_ids = [x[0] for x in self.env.cr.fetchall()]
-        return self.env['product.pricelist.item'].browse(item_ids)
+        return self.env["product.pricelist.item"].browse(item_ids)
