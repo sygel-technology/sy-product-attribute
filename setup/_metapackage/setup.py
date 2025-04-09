@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo-addon-product_name_with_attributes>=16.0dev,<16.1dev',
         'odoo-addon-product_old_migration_fields>=16.0dev,<16.1dev',
+        'odoo-addon-product_pricelist_access>=16.0dev,<16.1dev',
         'odoo-addon-product_search_category_attribute>=16.0dev,<16.1dev',
         'odoo-addon-product_vendor_code_search>=16.0dev,<16.1dev',
     ],
