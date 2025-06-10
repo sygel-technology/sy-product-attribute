@@ -15,6 +15,14 @@ class TestProductPricelistAccess(common.TransactionCase):
                 "name": "Pricelist-Test",
             }
         )
+        cls.pricelist_item = cls.env["product.pricelist.item"].create(
+            {
+                "pricelist_id": cls.pricelist.id,
+                "applied_on": "3_global",
+                "compute_price": "fixed",
+                "fixed_price": 100.0,
+            }
+        )
         cls.test_user_1 = cls.env["res.users"].create(
             {
                 "name": "Test User-1",
@@ -63,3 +71,22 @@ class TestProductPricelistAccess(common.TransactionCase):
         self.pricelist.access_group_ids = self.extra_group
         self.assertTrue(self.test_user_2.id in self.pricelist.access_user_ids.ids)
         self.assertTrue(self.test_user_1.id in self.pricelist.access_user_ids.ids)
+
+    def test_product_pricelist_item_access(self):
+        pricelist_item = self.pricelist_item.with_user(self.test_user_1.id)
+        pricelist_item.check_access_rule("read")
+        pricelist_item = self.pricelist_item.with_user(self.test_user_2.id)
+        pricelist_item.check_access_rule("read")
+        self.pricelist.access_user_ids = [self.test_user_1.id]
+        pricelist_item = self.pricelist_item.with_user(self.test_user_1.id)
+        pricelist_item.check_access_rule("read")
+        pricelist_item = self.pricelist_item.with_user(self.test_user_2.id)
+        with self.assertRaises(AccessError):
+            pricelist_item.check_access_rule("read")
+        self.pricelist.access_user_ids = self.pricelist.access_user_ids.ids + [
+            self.test_user_2.id
+        ]
+        pricelist_item = self.pricelist_item.with_user(self.test_user_1.id)
+        pricelist_item.check_access_rule("read")
+        pricelist_item = self.pricelist_item.with_user(self.test_user_2.id)
+        pricelist_item.check_access_rule("read")

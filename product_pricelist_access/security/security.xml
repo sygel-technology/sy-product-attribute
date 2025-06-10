@@ -16,4 +16,15 @@
             eval="[(4, ref('product_pricelist_access.restrict_product_pricelist'))]"
         />
     </record>
+    <record model="ir.rule" id="restrict_product_pricelist_item_record_rule">
+        <field name="name">Restrict Pricelist Item Access</field>
+        <field name="model_id" ref="product.model_product_pricelist_item" />
+        <field
+            name="domain_force"
+        >['|', ('pricelist_id.access_user_ids', '=', False), ('pricelist_id.access_user_ids', 'in', user.id)]</field>
+        <field
+            name="groups"
+            eval="[(4, ref('product_pricelist_access.restrict_product_pricelist'))]"
+        />
+    </record>
 </odoo>
