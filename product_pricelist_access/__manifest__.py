@@ -4,7 +4,7 @@
 {
     "name": "Product Pricelist Access",
     "summary": "Restrict access to product pricelists by user or group",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "license": "AGPL-3",
     "author": "Sygel,Odoo Community Association (OCA)",
     "website": "https://github.com/sygel-technology/sy-product-attribute",
