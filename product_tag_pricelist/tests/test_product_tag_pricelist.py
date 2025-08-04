@@ -2,6 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 
+import datetime
+
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
@@ -14,6 +16,8 @@ class TestProductTagPricelist(TransactionCase):
         cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
         cls.categ = cls.env["product.category"].create({"name": "Test Categ"})
         cls.tag = cls.env["product.tag"].create({"name": "Test Tag"})
+        cls.tag2 = cls.env["product.tag"].create({"name": "Test Tag 2"})
+        cls.tag3 = cls.env["product.tag"].create({"name": "Test Tag 3"})
         cls.product1 = cls.env["product.product"].create(
             {"name": "Test Product 1", "additional_product_tag_ids": [(4, cls.tag.id)]}
         )
@@ -28,19 +32,26 @@ class TestProductTagPricelist(TransactionCase):
                 "name": "Test Product 3",
             }
         )
+        cls.product_multi_tags = cls.env["product.product"].create(
+            {
+                "name": "Test Product",
+                "additional_product_tag_ids": [(4, cls.tag.id)],
+                "product_tag_ids": [(4, cls.tag2.id)],
+            }
+        )
         cls.pricelist = cls.env["product.pricelist"].create(
             {
                 "name": "Test Pricelist",
             }
         )
-        cls.line1 = cls.pricelist.item_ids.create(
+        cls.line_global = cls.pricelist.item_ids.create(
             {
                 "compute_price": "fixed",
                 "fixed_price": 1.0,
                 "applied_on": "3_global",
             }
         )
-        cls.line2 = cls.pricelist.item_ids.create(
+        cls.line_tags = cls.pricelist.item_ids.create(
             {
                 "compute_price": "fixed",
                 "fixed_price": 10.0,
@@ -48,12 +59,20 @@ class TestProductTagPricelist(TransactionCase):
                 "product_tag_ids": [(4, cls.tag.id)],
             }
         )
-        cls.line3 = cls.pricelist.item_ids.create(
+        cls.line_categ = cls.pricelist.item_ids.create(
             {
                 "compute_price": "fixed",
                 "fixed_price": 100.0,
                 "applied_on": "2_product_category",
                 "categ_id": cls.categ.id,
+            }
+        )
+        cls.line_multi_tags = cls.pricelist.item_ids.create(
+            {
+                "compute_price": "fixed",
+                "fixed_price": 10.0,
+                "applied_on": "2a_product_tags",
+                "product_tag_ids": [(4, cls.tag2.id), (4, cls.tag3.id)],
             }
         )
 
@@ -77,23 +96,23 @@ class TestProductTagPricelist(TransactionCase):
             )
 
     def test_name(self):
-        self.line2._compute_name_and_price()
-        self.assertEqual(self.line2.name, f"Tags: {self.tag.name}")
+        self.line_tags._compute_name_and_price()
+        self.assertEqual(self.line_tags.name, f"Tags: {self.tag.name}")
 
     def test_write_create(self):
-        self.line2.write(
+        self.line_tags.write(
             {
                 "applied_on": "3_global",
             }
         )
-        self.assertEqual(len(self.line2.product_tag_ids), 0)
-        self.line3.write(
+        self.assertEqual(len(self.line_tags.product_tag_ids), 0)
+        self.line_categ.write(
             {
                 "applied_on": "2a_product_tags",
                 "product_tag_ids": [(4, self.tag.id)],
             }
         )
-        self.assertEqual(len(self.line3.categ_id), 0)
+        self.assertEqual(len(self.line_categ.categ_id), 0)
         line4 = self.pricelist.item_ids.create(
             {
                 "compute_price": "fixed",
@@ -123,13 +142,27 @@ class TestProductTagPricelist(TransactionCase):
         self.assertEqual(line6.applied_on, "2a_product_tags")
 
     def test_onchange(self):
-        tag2 = self.env["product.tag"].create({"name": "Test Tag 2"})
-        self.product1.product_tag_ids = tag2
+        tag4 = self.env["product.tag"].create({"name": "Test Tag 4"})
+        self.product1.product_tag_ids = tag4
         res = self.product1._onchange_tag_ids()
         self.assertEqual(type(res), dict)
         self.assertTrue(res["warning"])
 
-        self.product1.product_tmpl_id.product_tag_ids = tag2
+        self.product1.product_tmpl_id.product_tag_ids = tag4
         res = self.product1.product_tmpl_id._onchange_tag_ids()
         self.assertEqual(type(res), dict)
         self.assertTrue(res["warning"])
+
+    def test_get_applicable_rules(self):
+        tag_rules = self.pricelist._get_applicable_rules(
+            self.product_multi_tags, datetime.date.today()
+        )
+        self.assertIn(self.line_global, tag_rules)
+        self.assertIn(self.line_tags, tag_rules)
+        self.assertNotIn(self.line_categ, tag_rules)
+        self.assertIn(self.line_multi_tags, tag_rules)
+
+        categ_rules = self.pricelist._get_applicable_rules(
+            self.product2, datetime.date.today()
+        )
+        self.assertNotIn(self.line_tags, categ_rules)

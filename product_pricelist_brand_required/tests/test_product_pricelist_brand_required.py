@@ -1,6 +1,8 @@
 # Copyright 2025 Angel Rivas <angel.rivas@sygel.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import datetime
+
 from odoo.tests import common, tagged
 
 
@@ -12,7 +14,7 @@ class TestPricelistItemBrand(common.TransactionCase):
 
         cls.brand_1 = cls.env["product.brand"].create({"name": "Brand X"})
         cls.brand_2 = cls.env["product.brand"].create({"name": "Brand Y"})
-
+        cls.categ = cls.env["product.category"].create({"name": "Test Categ"})
         cls.product_1 = cls.env["product.template"].create(
             {"name": "Product 1", "product_brand_id": cls.brand_1.id}
         )
@@ -33,6 +35,21 @@ class TestPricelistItemBrand(common.TransactionCase):
                 "applied_on": "1_product",
                 "product_tmpl_id": cls.product_1.id,
                 "pricelist_id": cls.pricelist.id,
+            }
+        )
+        cls.pricelist_item_category = cls.env["product.pricelist.item"].create(
+            {
+                "compute_price": "fixed",
+                "fixed_price": 2,
+                "applied_on": "2_product_category",
+                "categ_id": cls.categ.id,
+            }
+        )
+        cls.pricelist_item_global = cls.env["product.pricelist.item"].create(
+            {
+                "compute_price": "fixed",
+                "fixed_price": 3,
+                "applied_on": "3_global",
             }
         )
 
@@ -65,3 +82,11 @@ class TestPricelistItemBrand(common.TransactionCase):
         self.assertFalse(
             is_applicable_product, "Pricelist not applicable to Product without brand"
         )
+
+    def test_get_applicable_rules(self):
+        rules = self.pricelist._get_applicable_rules(
+            self.product_1 | self.product_2, datetime.date.today()
+        )
+        self.assertIn(self.pricelist_item, rules)
+        self.assertNotIn(self.pricelist_item_category, rules)
+        self.assertIn(self.pricelist_item_global, rules)
