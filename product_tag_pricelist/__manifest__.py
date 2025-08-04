@@ -4,7 +4,7 @@
 {
     "name": "Product Tag Pricelist",
     "summary": "Use tags in pricelists",
-    "version": "17.0.1.0.0",
+    "version": "17.0.2.0.0",
     "category": "Stock",
     "website": "https://github.com/sygel-technology/sy-product-attribute",
     "author": "Sygel, Odoo Community Association (OCA)",

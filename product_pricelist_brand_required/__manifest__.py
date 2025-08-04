@@ -6,7 +6,7 @@
     "summary": """
         Check if the product's brand matches any selected brand in the
         pricelist item.""",
-    "version": "17.0.1.0.0",
+    "version": "17.0.2.0.0",
     "license": "AGPL-3",
     "author": "Sygel,Odoo Community Association (OCA)",
     "website": "https://github.com/sygel-technology/sy-product-attribute",

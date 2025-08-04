@@ -24,8 +24,8 @@ addon | version | maintainers | summary
 [lot_ref_search](lot_ref_search/) | 17.0.1.0.0 |  | Search by internal reference in relational fields to lot
 [product_old_migration_fields](product_old_migration_fields/) | 17.0.1.0.1 |  | Product Old Migration Fields
 [product_pricelist_access](product_pricelist_access/) | 17.0.1.0.0 |  | Restrict access to product pricelists by user or group
-[product_pricelist_brand_required](product_pricelist_brand_required/) | 17.0.1.0.0 |  | Check if the product's brand matches any selected brand in the pricelist item.
-[product_tag_pricelist](product_tag_pricelist/) | 17.0.1.0.0 |  | Use tags in pricelists
+[product_pricelist_brand_required](product_pricelist_brand_required/) | 17.0.2.0.0 |  | Check if the product's brand matches any selected brand in the pricelist item.
+[product_tag_pricelist](product_tag_pricelist/) | 17.0.2.0.0 |  | Use tags in pricelists
 
 [//]: # (end addons)
 
