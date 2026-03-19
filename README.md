@@ -16,6 +16,13 @@ Odoo Product Attribute
 <!-- prettier-ignore-start -->
 
 [//]: # (addons)
+
+Available addons
+----------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[product_botanic_denomination](product_botanic_denomination/) | 18.0.1.0.0 |  | Add the product botanic denomination to products
+
 [//]: # (end addons)
 
 <!-- prettier-ignore-end -->
