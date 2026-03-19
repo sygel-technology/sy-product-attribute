@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Alberto Martínez <alberto.martinez@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="product_form_view_with_botanic_denomination2" model="ir.ui.view">
+        <field name="name">product.form.view.with.botanic.denomination2</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="before">
+                <field name="botanic_denomination_id" options="{'no_create': True}" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_form_view_with_botanic_denomination" model="ir.ui.view">
+        <field name="name">product.form.view.with.botanic.denomination</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='botanic_denomination_id']"
+                position="attributes"
+            >
+                <attribute name="readonly">True</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
