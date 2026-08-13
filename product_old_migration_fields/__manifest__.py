@@ -4,7 +4,7 @@
 {
     "name": "Product Old Migration Fields",
     "summary": "Product Old Migration Fields",
-    "version": "17.0.1.0.1",
+    "version": "18.0.1.0.0",
     "category": "Inventory",
     "website": "https://github.com/sygel-technology/sy-product-attribute",
     "author": "Sygel, Odoo Community Association (OCA)",
