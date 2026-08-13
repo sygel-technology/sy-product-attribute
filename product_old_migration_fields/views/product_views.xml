@@ -15,8 +15,7 @@
                     string="Migration Info"
                     name="migration_info"
                     groups="base_old_migration_fields.group_old_migration_fields_manager"
-                >
-                </page>
+                />
             </xpath>
         </field>
     </record>
