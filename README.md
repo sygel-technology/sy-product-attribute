@@ -22,6 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [product_botanic_denomination](product_botanic_denomination/) | 18.0.1.0.0 |  | Add the product botanic denomination to products
+[product_old_migration_fields](product_old_migration_fields/) | 18.0.1.0.0 |  | Product Old Migration Fields
 
 [//]: # (end addons)
 
