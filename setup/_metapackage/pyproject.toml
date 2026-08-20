@@ -1,9 +1,10 @@
 [project]
 name = "odoo-addons-sygel-technology-sy-product-attribute"
-version = "18.0.20260820.0"
+version = "18.0.20260820.1"
 dependencies = [
     "odoo-addon-product_botanic_denomination==18.0.*",
     "odoo-addon-product_old_migration_fields==18.0.*",
+    "odoo-addon-product_pricelist_access==18.0.*",
 ]
 classifiers=[
     "Programming Language :: Python",

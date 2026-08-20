@@ -23,6 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [product_botanic_denomination](product_botanic_denomination/) | 18.0.1.0.0 |  | Add the product botanic denomination to products
 [product_old_migration_fields](product_old_migration_fields/) | 18.0.1.0.0 |  | Product Old Migration Fields
+[product_pricelist_access](product_pricelist_access/) | 18.0.1.0.0 |  | Restrict access to product pricelists by user or group
 
 [//]: # (end addons)
 
