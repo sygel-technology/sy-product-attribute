@@ -1,0 +1,4 @@
+-   [Sygel](https://www.sygel.es):
+    -   Valentín Vinagre
+    -   Manuel Regidor
+    -   Ángel García de la Chica Herrera

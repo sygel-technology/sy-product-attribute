@@ -4,10 +4,10 @@
 {
     "name": "Product Name With Country",
     "summary": "Product Name With Country",
-    "version": "14.0.1.0.3",
+    "version": "17.0.1.0.0",
     "category": "Custom",
     "website": "https://github.com/sygel-technology/sy-product-attribute",
-    "author": "Sygel, Odoo Community Association (OCA)",
+    "author": "Sygel",
     "license": "AGPL-3",
     "application": False,
     "installable": True,

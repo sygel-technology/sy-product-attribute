@@ -1,6 +1,7 @@
 # Copyright 2023 Ángel García de la Chica Herrera <angel.garcia@sygel.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+
 from odoo import api, fields, models
 
 
@@ -16,21 +17,17 @@ class ProductTemplate(models.Model):
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    def name_get(self):
-        result = dict(super().name_get())
-        for product in self.sudo().filtered(lambda x: x.product_tmpl_id.country_id):
-            name = result.get(product.id, False)
-            if not self.env.context.get("no_country", False) and name:
-                result.update(
-                    {product.id: f"{name} ({product.product_tmpl_id.country_id.name})"}
-                )
-        return list(result.items())
+    @api.depends("product_tmpl_id.country_id", "name")
+    def _compute_display_name(self):
+        res = super()._compute_display_name()
+        for product in self.filtered(lambda x: x.product_tmpl_id.country_id):
+            if not self.env.context.get("no_country", False):
+                product.display_name = f"{product.display_name} ({product.product_tmpl_id.country_id.name})"  # noqa E501
+        return res
 
     @api.model
-    def _name_search(
-        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
-    ):
-        product_ids = super()._name_search(name, args, operator, limit, name_get_uid)
+    def _name_search(self, name, domain=None, operator="ilike", limit=None, order=None):
+        product_ids = super()._name_search(name, domain, operator, limit, order)
         if name:
             limit_search = limit
             if not limit and product_ids:
